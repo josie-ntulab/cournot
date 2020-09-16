@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Production - Round {{player.round_number}}
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.units label="How many units will you produce?" %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}
