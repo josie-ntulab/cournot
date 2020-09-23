@@ -10,7 +10,7 @@
     <p>
         You have been randomly and anonymously paired with another participant.
         Each of you will represent a firm. Both firms manufacture the same product.
-	There will be {{Constants.num_rounds}} rounds. Now is the {{player.round_number}} / {{Constants.num_rounds}} round.
+	There will be {{Constants.num_rounds}} rounds. Now is the <b> {{player.round_number}} / {{Constants.num_rounds}} </b> round.
     </p>
 
     <p>

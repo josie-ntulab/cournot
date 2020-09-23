@@ -20,7 +20,8 @@ this implementation, there are 2 firms competing for 1 period.
 class Constants(BaseConstants):
     name_in_url = 'cournot'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 5 # +5
+    # demand_coef = self.session.config['demand_coef']
 
     instructions_template = 'cournot/instructions.html'
 
@@ -36,17 +37,18 @@ with open( './_rooms/MicroEcon.txt' ) as f:
 
 class Subsession(BaseSubsession):
 
+    # if participant label isn't pre-assign, it can not be access here
     def creating_session(self):
         from pathlib import Path
-        labels = students
-        for p, label in zip(self.get_players(), labels):
-            p.participant.label = label
+        # labels = students
+        for p in self.get_players():  # zip(self.get_players(), labels):
+            # print( p.participant.label ) # = label
             if p.id_in_group == 1:
                 p.cost = 1
             if p.id_in_group == 2:
                 p.cost = 7.5
             p.participant.vars['history'] = []
-            p.participant.vars['opponent'] = p.other_player().participant.label
+            # p.participant.vars['opponent'] = p.other_player().participant.label
 
 
 class Group(BaseGroup):
@@ -73,11 +75,12 @@ class Group(BaseGroup):
     def set_payoffs(self):
         players = self.get_players()
         self.total_units = sum([p.units for p in players])
-        self.unit_price = max( [Constants.total_capacity - self.total_units, 0] )
+        self.unit_price = max( [Constants.total_capacity - self.session.config['demand_coef'] * self.total_units, 0] )
         for p in players:
             p.payoff = self.unit_price * p.units - p.units * p.cost
         for p in players:
             p.participant.vars['history'].append( (p.units, p.payoff, p.other_player().units, p.other_player().payoff, p.round_number, self.unit_price) )
+            p.participant.vars['opponent'] = p.other_player().participant.label
             # get the history
             # path = p.previous_outcome()
             # history = []

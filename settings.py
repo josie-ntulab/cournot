@@ -6,6 +6,8 @@ SESSION_CONFIGS = [
         name='cournot',
         display_name="Cournot game",
         num_demo_participants=2,
+        demand_coef = 1,
+        # num_rounds = 10,
         app_sequence=['cournot', 'payment_info'],
    ),
 ]
@@ -32,6 +34,11 @@ ROOMS = [
         name='MicroEcon',
         display_name='Intermedian MicroEconomics Class',
         participant_label_file='_rooms/MicroEcon.txt',
+    ),
+    dict(
+        name='0924test',
+        display_name='0924 Testing Room',
+        participant_label_file='_rooms/0924_studentlist.txt',
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
 ]
