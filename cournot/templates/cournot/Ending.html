@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Ending - Round {{player.round_number}} 
+{% endblock %}
+
+{% block content %}
+
+    <p><b>PLEASE STOP HERE!!!</b></p>
+    <p>The game for this week was ended, it will be continued next week.</p>
+    <p>本周遊戲到此結束，請停止作答，下周再繼續。</p>
+
+    {% next_button %}
+
+{% endblock %}
